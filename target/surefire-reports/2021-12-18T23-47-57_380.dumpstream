@@ -1,0 +1,4 @@
+# Created at 2021-12-18T23:48:09.429
+Boot Manifest-JAR contains absolute paths in classpath 'D:\Software\workspace\CONTEMSYS\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+
