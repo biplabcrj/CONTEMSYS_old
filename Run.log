@@ -1,4 +1,7 @@
- INFO [Initiator.java:34] - =======================User:RC-470=========================
+ INFO [Initiator.java:34] - ======User:RC-604=========================
 DEBUG [Initiator.java:44] - login successful
- INFO [Initiator.java:34] - =======================User:RC-470=========================
-DEBUG [Initiator.java:44] - login successful
+ INFO [Initiator.java:70] - Start uploading Excel
+ INFO [DownloadPage.java:142] - Uploading file: T961ABL2122D0039.zip : Uploaded Successfully!
+ INFO [DownloadPage.java:142] - Uploading file: T961ABL2122L0041.zip : Uploaded Successfully!
+ INFO [DownloadPage.java:142] - Uploading file: T961SCC2122D0037.zip : Uploaded Successfully!
+ INFO [Initiator.java:74] - Uploading Excel completed

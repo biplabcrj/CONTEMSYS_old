@@ -31,7 +31,7 @@ public class Initiator {
 			LoginPage loginPage = new LoginPage(driver);
 			loginPage.selectRole(rowData.get("Role"));
 			loginPage.selectUserCode(rowData.get("UserCode"));
-			logger.info("=======================User:" + rowData.get("UserCode") + "=========================");
+			logger.info("======User:" + rowData.get("UserCode") + "=========================");
 			loginPage.selectPassword(rowData.get("Password"));
 			loginPage.selectAuctionCenter(rowData.get("AuctionCenter"));
 			loginPage.clickLogin();
@@ -60,22 +60,28 @@ public class Initiator {
 				downloadPage.selectAuctionCenter(aucValue);
 				downloadPage.clickRefresh();
 				if (action.equals("Upload PDF")) {
+					logger.info("Start uploading PDF");
 					String uploadfilePath = System.getProperty("user.dir") + "\\PDFUpload";
 					downloadPage.uploadPDFFile(uploadfilePath);
 					Thread.sleep(1000);
+					logger.info("Uploading PDF completed");
 					break;
 				} else if (action.equals("Upload Excel")) {
+					logger.info("Start uploading Excel");
 					String uploadfilePath = System.getProperty("user.dir") + "\\ExcelUpload";
 					downloadPage.uploadExcelFile(uploadfilePath);
 					Thread.sleep(1000);
+					logger.info("Uploading Excel completed");
 					break;
 				}
 				if (downloadPage.isDataPresent()) {
 					downloadPage.clickSelectAll();
 					if (action.equals("Download PDF")) {
 						downloadPage.clickDownload();
+						logger.info("PDF file downloaded");
 					} else if (action.equals("Download Excel")) {
 						downloadPage.clickExportIRN();
+						logger.info("Excel file downloaded");
 					}
 					Thread.sleep(5000);
 

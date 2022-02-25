@@ -3,6 +3,7 @@ package mainPackage;
 import java.io.File;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +12,11 @@ import org.openqa.selenium.support.ui.Select;
 public class DownloadPage {
 
 	WebDriver driver = null;
+	Logger logger = null;
 
 	public DownloadPage(WebDriver driver) {
 		this.driver = driver;
+		logger = Logger.getLogger(Initiator.class);
 	}
 
 	public void selectSaleyear(String syr) {
@@ -56,12 +59,6 @@ public class DownloadPage {
 
 		String ExportIRNXpath = "//input[@value='Export IRN Details']";
 		driver.findElement(By.xpath(ExportIRNXpath)).click();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	public boolean isDataPresent() {
@@ -85,37 +82,39 @@ public class DownloadPage {
 	}
 
 	public void chooseFile(String file) {
-		System.out.println("file uploading =============="+file);
 		String chooseFileXpath = "//input[@type='file']";
 		driver.findElement(By.xpath(chooseFileXpath)).sendKeys(file);
 	}
 
-	public boolean clickUpload() {
+	public String clickUpload() {
+		String alertMessage = null;
 		String uploadXpath = "//input[@value='Upload']";
 		driver.findElement(By.xpath(uploadXpath)).click();
 		try {
-			handleAlert();
-			System.out.println("File upload fail");
-			return false;
+			alertMessage = handleAlert();
+			System.out.println(alertMessage);
+			return alertMessage;
 		} catch (Exception e) {
-			return true;
+			return alertMessage;
 		}
 	}
 
-	public boolean clickIRNUpload() {
+	public String clickIRNUpload() {
+		String alertMessage = null;
 		String IRNuploadXpath = "//input[@value='Upload IRN Details']";
 		driver.findElement(By.xpath(IRNuploadXpath)).click();
 		try {
-			handleAlert();
-			System.out.println("File upload fail");
-			return false;
+			alertMessage = handleAlert();
+			return alertMessage;
 		} catch (Exception e) {
-			return true;
+			return alertMessage;
 		}
 	}
 
-	public void handleAlert() {
+	public String handleAlert() {
+		String alertMessage = driver.switchTo().alert().getText();
 		driver.switchTo().alert().accept();
+		return alertMessage;
 	}
 	
 	public void uploadExcelFile(String uploadfilePath)
@@ -127,7 +126,8 @@ public class DownloadPage {
 		List<WebElement> tableRow = driver.findElements(By.xpath(tableXpath));
 		for(int i = 2; i<tableRow.size(); i++)
 		{
-			String checkBoxXpath = tableXpath + "["+ i + "]/td[1]";
+			String alertMessage = "Upload error";
+			String checkBoxXpath = tableXpath + "["+ i + "]/td[1]/input";
 			driver.findElement(By.xpath(checkBoxXpath)).click();
 			
 			String invoiceNoxpath = tableXpath + "["+ i + "]/td[7]";
@@ -138,17 +138,18 @@ public class DownloadPage {
 				if(fileName.startsWith(invoiceNo))
 				{
 					chooseFile(uploadfilePath + "\\" + fileName);
-					clickIRNUpload();
-					driver.findElement(By.xpath(checkBoxXpath)).click();
+					alertMessage = clickIRNUpload();
+					logger.info("Uploading file: "+fileName +" : "+ alertMessage);
 					break;
 				}
 			}
-			
+			driver.findElement(By.xpath(checkBoxXpath)).click();
 		}
 	}
 	
 	public void uploadPDFFile(String uploadfilePath)
 	{
+		
 		File directoryPath = new File(uploadfilePath);
 		String fileNames[] = directoryPath.list();
 		
@@ -156,6 +157,7 @@ public class DownloadPage {
 		List<WebElement> tableRow = driver.findElements(By.xpath(tableXpath));
 		for(int i = 2; i<tableRow.size(); i++)
 		{
+			String alertMessage = "Upload error";
 			String checkBoxXpath = tableXpath + "["+ i + "]/td[1]/input";
 			driver.findElement(By.xpath(checkBoxXpath)).click();
 			
@@ -167,12 +169,12 @@ public class DownloadPage {
 				if(fileName.startsWith(invoiceNo))
 				{
 					chooseFile(uploadfilePath + "\\" + fileName);
-					clickUpload();
-					driver.findElement(By.xpath(checkBoxXpath)).click();
+					alertMessage = clickUpload();
+					logger.info("Uploading file: "+fileName +" : "+ alertMessage);
 					break;
 				}
 			}
-			
+			driver.findElement(By.xpath(checkBoxXpath)).click();
 		}
 	}
 
