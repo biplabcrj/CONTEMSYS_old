@@ -1,7 +1,102 @@
- INFO [Initiator.java:34] - ======User:RC-604=========================
-DEBUG [Initiator.java:44] - login successful
- INFO [Initiator.java:70] - Start uploading Excel
- INFO [DownloadPage.java:142] - Uploading file: T961ABL2122D0039.zip : Uploaded Successfully!
- INFO [DownloadPage.java:142] - Uploading file: T961ABL2122L0041.zip : Uploaded Successfully!
- INFO [DownloadPage.java:142] - Uploading file: T961SCC2122D0037.zip : Uploaded Successfully!
- INFO [Initiator.java:74] - Uploading Excel completed
+ INFO [Initiator.java:38] - =======Garden:MAHAKALI======User:RC-1407===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for MAHAKALI_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:NARAYANPUR======User:RC-604===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for NARAYANPUR_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:BHUYANKHAT======User:RC-370===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for BHUYANKHAT_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:SHYAMGURI======User:RC-518===========
+ERROR [Initiator.java:44] - User is not registered to the selected Auction Center.
+ INFO [Initiator.java:38] - =======Garden:URRUNABUND======User:RC-738===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for URRUNABUND_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:MANUVALLEY======User:RC-469===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for MANUVALLEY_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:38] - =======Garden:MANUVALLEY======User:RC-1548===========
+ INFO [Initiator.java:48] - login successful
+ERROR [Initiator.java:63] - SaleNo 8 is not present
+ INFO [Initiator.java:38] - =======Garden:SEPON======User:RC-188===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for SEPON_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:ATTABARIE======User:RC-189===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for ATTABARIE_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:LEPETKATTA======User:RC-190===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for LEPETKATTA_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:MORAN======User:RC-187===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for MORAN_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:ADDABARIE======User:RC-216===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for ADDABARIE_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:38] - =======Garden:DIRAI======User:RC-1406===========
+ INFO [Initiator.java:48] - login successful
+ INFO [Initiator.java:100] - Excel file downloaded
+ INFO [Initiator.java:135] - File successfully renamed for DIRAI_Kolkata1
+ INFO [Initiator.java:143] - Download completed for Auction center Kolkata1
+ INFO [Initiator.java:145] - No file present for Auction center Kolkata2
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiLeaf
+ INFO [Initiator.java:145] - No file present for Auction center GuwahatiDust
+ INFO [Initiator.java:145] - No file present for Auction center Siliguri
+ INFO [Initiator.java:152] - All tasks completed

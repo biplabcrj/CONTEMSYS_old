@@ -50,12 +50,24 @@ public class LoginPage {
 	{
 		String errorXpath = "//tr[./td/input[@type='submit']]/following-sibling::tr[2]/td/span";
 		String error = null;
-		try {
+		String title = driver.getTitle();
+		System.out.println("title: " +title);
+		if(title.contains("Tea Board of India"))
+		{
 			error = driver.findElement(By.xpath(errorXpath)).getText();
-		} catch (Exception e) {
+			return error;
+		}
+		else
+		{
 			System.out.println("login successfull");
 			return null;
 		}
-		return error;
+//		try {
+//			error = driver.findElement(By.xpath(errorXpath)).getText();
+//		} catch (Exception e) {
+//			System.out.println("login successfull");
+//			return null;
+//		}
+//		return error;
 	}
 }

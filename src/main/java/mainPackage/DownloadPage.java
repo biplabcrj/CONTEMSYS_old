@@ -61,13 +61,24 @@ public class DownloadPage {
 		driver.findElement(By.xpath(ExportIRNXpath)).click();
 	}
 
-	public boolean isDataPresent() {
-		String noDataXpath = "//td[contains(text(),'No Data Found.')]";
-		try {
-			driver.findElement(By.xpath(noDataXpath));
-			return false;
-		} catch (Exception e) {
+	public boolean isDataPresent(String action) {
+		String noRowXpath = null;
+		if (action.equals("Download Excel"))
+		{
+			noRowXpath = "//table[@id='MainContent_GridView1']/tbody/tr[2]/td";
+		}
+		else if(action.equals("Download PDF"))
+		{
+			noRowXpath = "//table[@id='MainContent_GridSellerDownload']/tbody/tr[2]/td";
+		}
+		int noRows = driver.findElements(By.xpath(noRowXpath)).size();
+		if(noRows>1)
+		{
 			return true;
+		}
+		else
+		{
+			return false;
 		}
 	}
 
@@ -140,6 +151,7 @@ public class DownloadPage {
 					chooseFile(uploadfilePath + "\\" + fileName);
 					alertMessage = clickIRNUpload();
 					logger.info("Uploading file: "+fileName +" : "+ alertMessage);
+					moveToUploaded(uploadfilePath,fileName);
 					break;
 				}
 			}
@@ -166,11 +178,12 @@ public class DownloadPage {
 			
 			for(String fileName:fileNames)
 			{
-				if(fileName.startsWith(invoiceNo))
+				if(fileName.contains(invoiceNo))
 				{
 					chooseFile(uploadfilePath + "\\" + fileName);
 					alertMessage = clickUpload();
 					logger.info("Uploading file: "+fileName +" : "+ alertMessage);
+					moveToUploaded(uploadfilePath,fileName);
 					break;
 				}
 			}
@@ -178,4 +191,18 @@ public class DownloadPage {
 		}
 	}
 
+	public void moveToUploaded(String filePth, String fileName)
+	{
+		String uploadedFilePath = System.getProperty("user.dir") + "\\Uploaded";
+		File directory = new File(uploadedFilePath);
+		if (! directory.exists())
+		{
+			directory.mkdir();
+		}
+		
+		File fileToMove = new File(filePth + "\\" + fileName);
+		fileToMove.renameTo(new File(directory + "\\" +fileName));
+		fileToMove.deleteOnExit();
+		logger.info(fileName + " moved to Uploaded filder");
+	}
 }

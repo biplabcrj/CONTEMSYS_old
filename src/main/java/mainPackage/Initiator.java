@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
@@ -31,23 +35,35 @@ public class Initiator {
 			LoginPage loginPage = new LoginPage(driver);
 			loginPage.selectRole(rowData.get("Role"));
 			loginPage.selectUserCode(rowData.get("UserCode"));
-			logger.info("======User:" + rowData.get("UserCode") + "=========================");
+			logger.info("=======Garden:" +rowData.get("Garden")+"======User:" + rowData.get("UserCode") + "===========");
 			loginPage.selectPassword(rowData.get("Password"));
 			loginPage.selectAuctionCenter(rowData.get("AuctionCenter"));
 			loginPage.clickLogin();
 			String error = loginPage.isLoginSuccess();
 			if (error != null) {
-				logger.debug(error);
+				logger.error(error);
 				Driver.driverTearDown(driver);
 				continue;
 			}
-			logger.debug("login successful");
+			logger.info("login successful");
 			HomePage homePage = new HomePage(driver);
 			homePage.clickPublicIssuer(driver);
 
 			DownloadPage downloadPage = new DownloadPage(driver);
-			downloadPage.selectSaleyear(rowData.get("SaleYear"));
-			downloadPage.selectSaleNo(rowData.get("SaleNo"));
+			try {
+				downloadPage.selectSaleyear(rowData.get("SaleYear"));
+			} catch (Exception e) {
+				logger.error("SaleYear "+rowData.get("SaleYear")+" is not present");
+				Driver.driverTearDown(driver);
+				continue;
+			}
+			try {
+				downloadPage.selectSaleNo(rowData.get("SaleNo"));
+			} catch (Exception e) {
+				logger.error("SaleNo "+rowData.get("SaleNo")+" is not present");
+				Driver.driverTearDown(driver);
+				continue;
+			}
 			if (action.contains("PDF")) {
 				downloadPage.selectIssuer();
 			} else if (action.contains("Excel")) {
@@ -74,7 +90,7 @@ public class Initiator {
 					logger.info("Uploading Excel completed");
 					break;
 				}
-				if (downloadPage.isDataPresent()) {
+				if (downloadPage.isDataPresent(action)) {
 					downloadPage.clickSelectAll();
 					if (action.equals("Download PDF")) {
 						downloadPage.clickDownload();
@@ -89,15 +105,29 @@ public class Initiator {
 					File directoryPath = new File(downloadPath);
 					String contents[] = directoryPath.list();
 					String oldFileName = contents[0];
-					String newFileName = rowData.get("Garden") + "_" + rowData.get("Auc" + aucIndex) + "_"
+					String newFileName = rowData.get("Garden") + "_" + rowData.get("SaleNo") + "_" + rowData.get("Auc" + aucIndex) + "_"
 							+ contents[0];
 					File oldFile = new File(System.getProperty("user.dir") + "\\downloadFiles\\" + oldFileName);
 					File newFile = null;
 					if (action.equals("Download PDF")) {
-						newFile = new File(System.getProperty("user.dir") + "\\PDFDownload\\" + newFileName);
+						File directory = new File(System.getProperty("user.dir") + "\\PDFDownload\\" + rowData.get("SaleNo"));
+						if (! directory.exists())
+						{
+							directory.mkdir();
+						}
+						newFile = new File(System.getProperty("user.dir") + "\\PDFDownload\\" + rowData.get("SaleNo")+ "\\"+ newFileName);
 					} else if (action.equals("Download Excel")) {
-						newFile = new File(System.getProperty("user.dir") + "\\ExcelDownload\\" + newFileName);
+						File directory = new File(System.getProperty("user.dir") + "\\ExcelDownload\\" + rowData.get("SaleNo"));
+						if (! directory.exists())
+						{
+							directory.mkdir();
+						}
+						newFile = new File(System.getProperty("user.dir") + "\\ExcelDownload\\" + rowData.get("SaleNo")+ "\\" + newFileName);
 					}
+					
+					if (newFile.exists() && newFile.isFile()) {
+						newFile.delete();
+					  }
 
 					boolean flag = oldFile.renameTo(newFile);
 
@@ -108,8 +138,9 @@ public class Initiator {
 						logger.info("File rename failed for " + rowData.get("Garden") + "_"
 								+ rowData.get("Auc" + aucIndex));
 					}
+					FileUtils.cleanDirectory(directoryPath); 
 
-					logger.info("File downloaded for Auction center " + rowData.get("Auc" + aucIndex));
+					logger.info("Download completed for Auction center " + rowData.get("Auc" + aucIndex));
 				} else {
 					logger.info("No file present for Auction center " + rowData.get("Auc" + aucIndex));
 				}
@@ -118,7 +149,9 @@ public class Initiator {
 
 			Driver.driverTearDown(driver);
 		}
-
+		logger.info("All tasks completed");
+		JFrame jFrame = new JFrame();
+        JOptionPane.showMessageDialog(jFrame, "All tasks completed");
 	}
 
 }
