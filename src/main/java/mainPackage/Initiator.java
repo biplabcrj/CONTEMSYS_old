@@ -131,13 +131,13 @@ public class Initiator {
 
 					boolean flag = oldFile.renameTo(newFile);
 
-					if (flag == true) {
-						logger.info("File successfully renamed for " + rowData.get("Garden") + "_"
-								+ rowData.get("Auc" + aucIndex));
-					} else {
-						logger.info("File rename failed for " + rowData.get("Garden") + "_"
-								+ rowData.get("Auc" + aucIndex));
-					}
+						if (flag == true) {
+							logger.info("File successfully renamed for " + rowData.get("Garden") + "_"
+									+ rowData.get("Auc" + aucIndex));
+						} else {
+							logger.info("File rename failed for " + rowData.get("Garden") + "_"
+									+ rowData.get("Auc" + aucIndex));
+						}
 					FileUtils.cleanDirectory(directoryPath); 
 
 					logger.info("Download completed for Auction center " + rowData.get("Auc" + aucIndex));

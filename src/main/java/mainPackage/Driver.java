@@ -11,8 +11,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-
 public class Driver {
 	
 	public static WebDriver launchDriver()
@@ -33,7 +31,7 @@ public class Driver {
         cap.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);  
         cap.setCapability(ChromeOptions.CAPABILITY, options); 
         
-		WebDriverManager.chromedriver().setup();
+		//WebDriverManager.chromedriver().setup();
 		WebDriver driver = new ChromeDriver(cap);
 		driver.get("https://www.teaauction.gov.in/teaboardadmin/Home.aspx");
 		driver.manage().window().maximize();
